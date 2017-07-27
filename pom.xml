@@ -7,5 +7,8 @@
   <modules>
   	<module>microservice-simple-provider-user</module>
   	<module>microservice-simple-consumer-movie</module>
+  	<module>microservice-discovery-eureka</module>
+  	<module>microservice-provider-user</module>
+  	<module>microservice-consumer-movie</module>
   </modules>
 </project>
