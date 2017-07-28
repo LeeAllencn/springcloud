@@ -14,5 +14,6 @@
   	<module>microservice-consumer-movie-ribbon</module>
   	<module>microservice-consumer-movie-feign</module>
   	<module>microservice-consumer-movie-ribbon-hystrix</module>
+  	<module>microservice-gateway-zuul</module>
   </modules>
 </project>
