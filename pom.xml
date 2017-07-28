@@ -13,5 +13,6 @@
   	<module>microservice-discovery-eureka-ha</module>
   	<module>microservice-consumer-movie-ribbon</module>
   	<module>microservice-consumer-movie-feign</module>
+  	<module>microservice-consumer-movie-ribbon-hystrix</module>
   </modules>
 </project>
