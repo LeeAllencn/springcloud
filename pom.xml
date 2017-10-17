@@ -18,5 +18,6 @@
   	<module>microservice-config-server</module>
   	<module>microservice-config-client</module>
   	<module>microservice-simple-provider-user-trace</module>
+  	<module>microservice-trace-zipkin-server</module>
   </modules>
 </project>
