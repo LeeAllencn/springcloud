@@ -1,0 +1,8 @@
+server:
+  port: 9411
+spring:
+  rabbitmq:
+    host: lix3-rabbitmqservice.caas.haihangyun.cn
+    port: 30988
+    username: guest
+    password: guest
