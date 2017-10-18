@@ -6,6 +6,7 @@
 - eureka 的自我保护模式
 ### 注：
 1. 在生产环境中，通常会部署一个高可用的Eureka Server集群
+![服务发现架构图](images/服务发现架构图.png)
 
 ![Eureka 架构图](images/Eureka架构图.jpeg)
 
