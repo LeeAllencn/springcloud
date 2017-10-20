@@ -167,6 +167,8 @@ zuul:
 - filterOrder()：返回毅哥int值来指定过滤器的执行顺序，不同的过滤器允许返回相同的数字
 - shouldFilter()：返回一个boolean值来判断该过滤器是否执行，true表示执行，false表示不执行
 - run()：过滤器的具体逻辑
+### 为Zuul添加回退
+实现ZuulFallbackProvider接口
 
 ### 注：
 1. 目前，zuul使用的默认HTTP客户端是Apache HTTP Client，若使用RestClient，需配置ribbon.restclient.enabled=true；若使用okhttp3.OkHttpClient,需配置ribbon.okhttp.enabled=true。

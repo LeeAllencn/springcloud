@@ -33,7 +33,7 @@
 	<module>microservice-hystrix-turbine-mq</module>
   	<module>microservice-file-upload</module>
   	<module>microservice-gateway-zuul-filter</module>
-
+	<module>microservice-gateway-zuul-fallback</module>
 
 
   </modules>
