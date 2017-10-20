@@ -110,6 +110,56 @@ feign:
 
 - 注：在spring cloud Camden SR4中，依赖spring-cloud-starter-turbine不能与spring-cloud-starter-turbine-stream共存，否则启动时会报异常。
 
+# Zuul
+是Netflix开源的微服务网关。微服务网关是介于客户端和服务器端之间的中间层，所有的外部请求都会先经过微服务网关。
+### 使用微服务网关的优点
+- 易于监控
+- 易于认证
+- 减少了客户端与各个微服务之间的交互次数
+### Zuul的核心是一些过滤器，可实现的功能
+- 身份认证与安全
+- 审查与监控
+- 动态路由
+- 压力测试
+- 负载分配
+- 静态响应处理多区域弹性
+### zuul的路由规则
+http://ZUUL_HOST:ZUUL_PORT/微服务在Eureka上的serviceId/** 会被转发到serviceId对应的微服务。
+### Zuul的路由端点
+/routes  
+- GET请求访问：返回Zuul当前映射的路由列表
+- POST请求访问：强制刷新Zuul当前映射的路由列表（尽管路由会自动刷新）
+### 路由配置
+- 自定义指定微服务的访问路径（zuul.routes.指定微服务的serviceId = 指定路径）
+```yaml
+zuul:
+  routes:
+    microservice-provicer-user: /user/**
+```
+- 同时指定微服务的serviceId和对应的路径
+```yaml
+zuul:
+  routes:
+    # 该配置方式中，user-route只是给路由一个名称，可以任意起名
+    user-route:
+      service-id: microservice-provicer-user
+      path: /user/**
+```
+### Zuul的安全与Header
+一般来说，可在同一个系统中的服务之间共享Header。不过应尽量防止让一些敏感的Herder外泄。因此，在很多场景下，需要通过为路由指定一系列敏感Header列表。如：
+```yaml
+zuul:
+  routes:
+    microservice-provider-user:
+      url: https://downstream
+      path: /users/**
+      sensitive-headers: Cookie,Set-Cookie,Authorization
+```
+### 注：
+1. 目前，zuul使用的默认HTTP客户端是Apache HTTP Client，若使用RestClient，需配置ribbon.restclient.enabled=true；若使用okhttp3.OkHttpClient,需配置ribbon.okhttp.enabled=true。
+2. Zuul可以使用Ribbon达到负载均衡的效果
+3. Zuul整合了Hystrix，并实现监控
+
 # Docker
 开源的容器引擎，有助于更快的交付应用  
 - Docker daemon（Docker守护进程）

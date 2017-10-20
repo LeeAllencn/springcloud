@@ -31,5 +31,6 @@
 	<module>microservice-hystrix-turbine</module>
 	<module>microservice-consumer-movie-ribbon-hystrix-turbine-mq</module>
 	<module>microservice-hystrix-turbine-mq</module>
+  	<module>microservice-file-upload</module>
   </modules>
 </project>
