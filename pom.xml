@@ -26,5 +26,6 @@
 	<module>microservice-trace-zipkin-server-stream</module>
   	<module>microservice-consumer-movie-feign-hystrix-fallback</module>
   	<module>microservice-consumer-movie-feign-hystrix-fallback-factory</module>
+  	<module>microservice-hystrix-dashboard</module>
   </modules>
 </project>
