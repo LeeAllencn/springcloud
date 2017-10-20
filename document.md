@@ -155,10 +155,25 @@ zuul:
       path: /users/**
       sensitive-headers: Cookie,Set-Cookie,Authorization
 ```
+### Zuul 过滤器
+1 过滤器类型与请求生命周期  
+- PRE
+- ROUTING
+- POST
+- ERROR  
+![Zuul请求的生命周期](images/zuul-request-lifecycle.png)   
+2 继承ZuulFilter需要实现的方法  
+- filterType()：返回过滤器的类型
+- filterOrder()：返回毅哥int值来指定过滤器的执行顺序，不同的过滤器允许返回相同的数字
+- shouldFilter()：返回一个boolean值来判断该过滤器是否执行，true表示执行，false表示不执行
+- run()：过滤器的具体逻辑
+
 ### 注：
 1. 目前，zuul使用的默认HTTP客户端是Apache HTTP Client，若使用RestClient，需配置ribbon.restclient.enabled=true；若使用okhttp3.OkHttpClient,需配置ribbon.okhttp.enabled=true。
 2. Zuul可以使用Ribbon达到负载均衡的效果
 3. Zuul整合了Hystrix，并实现监控
+4. Zuul的Hystrix监控的粒度是微服务，而不是某个API
+5. 所有经过Zuul的请求，都会被Hystrix保护起来
 
 # Docker
 开源的容器引擎，有助于更快的交付应用  
