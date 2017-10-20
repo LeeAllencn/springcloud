@@ -1,0 +1,18 @@
+server:
+  port: 8010
+spring:
+  application:
+    name: microservice-consumer-movie
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+logging:
+  level:
+    feign: DEBUG
+# 在Dalston版本中，Feign默认是不开启Hystrix的，所以需要配置
+feign:
+  hystrix:
+    enabled: true

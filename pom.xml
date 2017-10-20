@@ -25,5 +25,6 @@
 	<module>microservice-trace-zipkin-server-stream-elasticsearch</module>
 	<module>microservice-trace-zipkin-server-stream</module>
   	<module>microservice-consumer-movie-feign-hystrix-fallback</module>
+  	<module>microservice-consumer-movie-feign-hystrix-fallback-factory</module>
   </modules>
 </project>
