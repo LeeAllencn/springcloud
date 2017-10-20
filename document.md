@@ -51,6 +51,60 @@ public interface UserFeignClient {
 ### 注：
 1. feignClient中interface的写法要注意，不然接口会掉不通
 
+# Hystrix
+一个延迟和容错库，用于隔离访问远程系统、服务或者第三方库，防止级联失败，从而提升系统的可用性与容错性。
+
+### 容错机制要求
+- 为网络请求设置超时
+- 使用断路器模式
+
+### 容错机制实现
+- 包裹请求
+- 跳闸机制
+- 资源隔离
+- 监控
+- 回退机制
+- 自我修复
+
+### Feign 使用 Hystrix
+请务必注意：在Spring Cloud Dalston中，Feign默认是不开启Hystrix的。因此，如使用Dalston请务必额外设置属性：feign.hystrix.enabled=true，否则断路器不会生效。而，Spring Cloud Angel/Brixton/Camden中，Feign默认都是开启Hystrix的。无需设置该属性。
+
+### 通过Fallback Factory检查回退原因
+
+### 为Feign禁用Hystrix
+在spring cloud中，只要Hystrix在项目的classpath中，Feign就会使用断路器包裹Feign客户端的所有方法。这样虽然方便，但很多场景下并不需要该功能。
+- 为指定Feign客户端禁用Hystrix
+```java
+// 配置
+@Configuration
+public class FeignDisableHystrixConfiguration {
+    @Bean
+    @Scope("prototype")
+    public Feign.Builder feignBuilder() {
+        return Feign.builder();
+    }
+}
+
+// 使用
+@FeignClient(name="user", configuration=FeignDisableHystrixConfiguration.class)
+public interface UserFeignClient {
+    //...
+}
+```
+- 全局禁用Hystrix  
+application.yml文件中配置：
+```yaml
+feign:
+  hystrix:
+    enabled: false
+```
+
+### Hystrix监控
+![Hystrix Dashboard](images/dashboard-annoted-circuit.png)
+
+### 使用turbine聚合监控数据
+一个聚合Hystrix监控数据的工具，将所有/hystrix.stream端点的数据聚合到一个组合的/turbine.stream中。
+
 # Docker
 开源的容器引擎，有助于更快的交付应用  
 - Docker daemon（Docker守护进程）
@@ -77,7 +131,7 @@ systemctl restart docker
 ```
 
 ### Docker常用命令
-1. Docker镜像常用命令
+- Docker镜像常用命令
 ```
 docker search imageName         # 搜索镜像
 docker pull imageName           # 拉取镜像
@@ -85,7 +139,7 @@ docker images                   # 列出镜像
 docker rmi imageName            # 删除镜像
 docker rmi -f $(docker images)  # 删除所有镜像
 ```
-2. Docker容器常用命令
+- Docker容器常用命令
 ```
 # 新建并启动容器（-d：后台运行；-p：指定端口映射；/bin/echo：终端打印字符串）
 docker run [-d -p 宿主机端口:容器端口] imageName [/bin/echo 'Hello Docker']
