@@ -105,6 +105,11 @@ feign:
 ### 使用turbine聚合监控数据
 一个聚合Hystrix监控数据的工具，将所有/hystrix.stream端点的数据聚合到一个组合的/turbine.stream中。
 
+- 使用消息中间件收集数据  
+某些场景下（例如微服务与Turbine网络不通），则可借助消息中间件实现数据的收集
+
+- 注：在spring cloud Camden SR4中，依赖spring-cloud-starter-turbine不能与spring-cloud-starter-turbine-stream共存，否则启动时会报异常。
+
 # Docker
 开源的容器引擎，有助于更快的交付应用  
 - Docker daemon（Docker守护进程）
