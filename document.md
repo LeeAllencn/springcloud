@@ -264,6 +264,7 @@ keytool -genkeypair -alias mytestkey -keyalg RSA -dname "CN=Web Server,OU=Unit,O
 
 ### 使用/refresh端点手动刷新配置
 
+### 使用Spring Cloud Bus自动刷新配置
 
 # Docker
 开源的容器引擎，有助于更快的交付应用  
