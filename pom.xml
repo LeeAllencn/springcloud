@@ -34,6 +34,12 @@
   	<module>microservice-file-upload</module>
   	<module>microservice-gateway-zuul-filter</module>
 	<module>microservice-gateway-zuul-fallback</module>
+	<module>microservice-sidecar</module>
+	<module>microservice-sidecar-client-ribbon</module>
+
+
+
+
 
 
   </modules>

@@ -170,6 +170,34 @@ zuul:
 ### 为Zuul添加回退
 实现ZuulFallbackProvider接口
 
+### Zuul的高可用
+- 方式一：Zuul客户端也注册到Eureka Server上
+只须将多个Zuul节点注册到Eureka Server上，就可实现Zuul的高可用  
+**注：Zuul客户端是指发送请求的客户端**
+- 方式二：Zuul客户端为注册到Eureka Server上
+现实中，这种场景往往更常见。例如，Zuul客户端是一个手机APP--不可能让所有手机终端都注册到Eureka Server上。这种情况下，可借助一个额外的负载均衡器来实现Zuul的高可用，例如**Nginx、HAProxy、F5**等。
+
+### 使用Sidecar整合非JVM微服务
+- 非JVM微服务调用注册在Eureka Server上的JVM微服务
+- JVM微服务调用非JVM微服务的接口
+- Sidecar与Node.js微服务分离部署
+
+1 方法一：
+```yaml
+eureka:
+  instance:
+    hostname: 非JVM微服务的hostname
+```
+2 方法二：
+```yaml
+sidecar:
+  hostname: 非JVM微服务的hostname
+  ip-address: 非JVM微服务的IP地址
+```
+
+### 使用Zuul聚合微服务
+
+
 ### 注：
 1. 目前，zuul使用的默认HTTP客户端是Apache HTTP Client，若使用RestClient，需配置ribbon.restclient.enabled=true；若使用okhttp3.OkHttpClient,需配置ribbon.okhttp.enabled=true。
 2. Zuul可以使用Ribbon达到负载均衡的效果
