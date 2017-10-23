@@ -253,6 +253,16 @@ spring.datasource.username=dbuser
 spring.datasource.password={cipher}a54323bb30ff3d5e7544108a29c940c87c8a25d057cd77fc96b76b1fbe231d8a
 ```  
 一些场景下，想要让Config Server直接返回密文本身，而非解密后的内容，可设置spring.cloud.config.server.encry.enabled=false，这时可由Config Client自行解密
+
+- 非对称加密  
+创建一个Key Store,并复制到项目的classpath下
+```
+keytool -genkeypair -alias mytestkey -keyalg RSA -dname "CN=Web Server,OU=Unit,O=Organization,L=City,S=State,C=US" -keypass changeme -keystore server.jks -storepass letmein
+```  
+加解密方式与对称加密的测试方式一样。  
+**注：相对于对称加密，非对称加密的安全性更高**
+
+
 # Docker
 开源的容器引擎，有助于更快的交付应用  
 - Docker daemon（Docker守护进程）
