@@ -262,6 +262,8 @@ keytool -genkeypair -alias mytestkey -keyalg RSA -dname "CN=Web Server,OU=Unit,O
 加解密方式与对称加密的测试方式一样。  
 **注：相对于对称加密，非对称加密的安全性更高**
 
+### 使用/refresh端点手动刷新配置
+
 
 # Docker
 开源的容器引擎，有助于更快的交付应用  
