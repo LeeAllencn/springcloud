@@ -197,7 +197,6 @@ sidecar:
 
 ### 使用Zuul聚合微服务
 
-
 ### 注：
 1. 目前，zuul使用的默认HTTP客户端是Apache HTTP Client，若使用RestClient，需配置ribbon.restclient.enabled=true；若使用okhttp3.OkHttpClient,需配置ribbon.okhttp.enabled=true。
 2. Zuul可以使用Ribbon达到负载均衡的效果
@@ -205,6 +204,55 @@ sidecar:
 4. Zuul的Hystrix监控的粒度是微服务，而不是某个API
 5. 所有经过Zuul的请求，都会被Hystrix保护起来
 
+# Config  
+spring cloud config 为分布式系统外部化配置提供了服务器端和客户端的支持，包含：  
+- Config Server
+- Config Client
+
+微服务配置管理需求：
+- 集中管理配置
+- 不同环境不同配置（开发、测试、预发布、生产等）
+- 运行期间可动态调整
+- 配置修改后可自动更新
+
+### 引导上下文
+引导上下文负责从配置服务器加载配置属性，以及解密外部配置文件中的属性。和主应用程序加载application.*(yml or properties)中的属性不同，引导上下文加载bootstrap.*中的属性。配置在bootstrap.*中的属性有更高的优先级。
+
+### 配置内容的加解密
+- 安装JCE  
+地址：www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html
+安装：将JDK/jre/lib/security 目录中的两个jar文件替换为压缩包中的jar文件
+- 对称加密
+```yaml
+encrypt:
+  key: foo # 设置对称密码
+```
+```
+测试：（postman）
+# 加密：
+POST localhost:8080/encrypt     Body Raw Text
+mysecret
+
+# 解密：
+POST localhost:8080/decrypt     Body Raw Text
+fb4759f094e4e9e12b8c14f3d8504b395e1055da9bc586572d4395fad9adef6a
+```
+**注：将spring cloud的版本由默认的 Dalston.SR4 改为 Camden.SR4版本，否则会报异常“No key was installed for encryption service”**
+存储加密的内容：  
+创建一个encryption.yml文件
+```yaml
+spring:
+  datasource:
+    username: dbuser
+    password: '{cipher}a54323bb30ff3d5e7544108a29c940c87c8a25d057cd77fc96b76b1fbe231d8a'
+```  
+使用http://localhost:8080/encryption-default.yml获取结果  
+如果配置文件为encryption.properties  
+```properties
+spring.datasource.username=dbuser
+spring.datasource.password={cipher}a54323bb30ff3d5e7544108a29c940c87c8a25d057cd77fc96b76b1fbe231d8a
+```  
+一些场景下，想要让Config Server直接返回密文本身，而非解密后的内容，可设置spring.cloud.config.server.encry.enabled=false，这时可由Config Client自行解密
 # Docker
 开源的容器引擎，有助于更快的交付应用  
 - Docker daemon（Docker守护进程）
