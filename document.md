@@ -297,6 +297,10 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
 ```
+
+### Spring Cloud Config 的用户认证
+为了防止配置文件内容的外泄，应该保护Config Server的安全
+
 # Docker
 开源的容器引擎，有助于更快的交付应用  
 - Docker daemon（Docker守护进程）
