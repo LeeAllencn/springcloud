@@ -265,7 +265,38 @@ keytool -genkeypair -alias mytestkey -keyalg RSA -dname "CN=Web Server,OU=Unit,O
 ### 使用/refresh端点手动刷新配置
 
 ### 使用Spring Cloud Bus自动刷新配置
+使用轻量级的消息代理连接分布式系统的节点，这样就可以广播传播状态的更改（例如配置的更新）或者其他的管理指令。
 
+- 跟踪总线事件  
+只需配置
+```yaml
+spring:
+  cloud:
+    bus:
+      trace:
+        enabled: true
+```  
+这样在/bus/refresh端点请求后，访问/trace端点就可获取相关信息
+
+### Spring Cloud Config 与 Eureka 配合使用
+1. 将Config Server和Config Client都注册到Eureka Server上；
+2. Config Client的bootstrap.yml可配置如下：
+```yaml
+spring:
+  application:
+    name: microservice-foo    # 对应config server所获取的配置文件的{application}
+  cloud:
+    config:
+      profile: dev            # profile对应config server所获取的配置文件中的{profile} 
+      label: master           # 指定Git仓库的分支，对应config server所获取的配置文件的{label}
+      discovery:
+        enabled: true
+        service-id: microservice-config-server-eureka
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+```
 # Docker
 开源的容器引擎，有助于更快的交付应用  
 - Docker daemon（Docker守护进程）
