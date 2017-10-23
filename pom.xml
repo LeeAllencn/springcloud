@@ -36,7 +36,7 @@
 	<module>microservice-gateway-zuul-fallback</module>
 	<module>microservice-sidecar</module>
 	<module>microservice-sidecar-client-ribbon</module>
-
+	<module>microservice-gateway-zuul-aggregation</module>
 
 
 
