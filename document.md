@@ -309,6 +309,23 @@ eureka:
 借助一个负载均衡器  
 2 Config Server注册到Eureka Server上
 
+# Sleuth
+我们知道，微服务之间通过网络进行通信。如果能够跟踪每个请求，了解请求经过哪些微服务（从而了解信息是如何在服务之间流动）、请求消耗时间、网络延迟、业务逻辑消耗时间等指标，那么就能更好的分析系统瓶颈、解决系统问题。因此，微服务跟踪很有必要。
+
+### 简介
+Spring Cloud Sleuth为Spring Cloud提供了分布式跟踪的解决方案。
+- span（跨度）
+- trace（跟踪）
+- annotation（标注）  
+\- CS（Client Sent 客户端发送）  
+\- SR（Server Received 服务端接受）  
+\- SS（Server Sent 服务端发送）  
+\- CR（Client Received 客户端接受）
+
+### Sleuth 与 ELK 配合使用
+
+### Sleuth 与 Zipkin 配合使用
+
 # Docker
 开源的容器引擎，有助于更快的交付应用  
 - Docker daemon（Docker守护进程）
