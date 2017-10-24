@@ -301,6 +301,14 @@ eureka:
 ### Spring Cloud Config 的用户认证
 为了防止配置文件内容的外泄，应该保护Config Server的安全
 
+### Config Server 的高可用
+- Git仓库的高可用
+- RabbitMQ的高可用
+- Config Server自身的高可用  
+1 Config Server 未注册到Eureka上  
+借助一个负载均衡器  
+2 Config Server注册到Eureka Server上
+
 # Docker
 开源的容器引擎，有助于更快的交付应用  
 - Docker daemon（Docker守护进程）
