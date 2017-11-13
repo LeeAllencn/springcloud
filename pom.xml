@@ -43,7 +43,7 @@
 	<module>microservice-config-client-refresh-cloud-bus</module>
 	<module>microservice-config-server-refresh-cloud-bus</module>
 	<module>microservice-config-server-authenticating</module>
-
+	<module>microservice-auth-server</module>
 
 
 
