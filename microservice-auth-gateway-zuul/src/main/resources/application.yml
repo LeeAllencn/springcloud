@@ -1,0 +1,29 @@
+server:
+  port: 8081
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+spring:
+  application:
+    name: microservice-auth-api-gateway
+
+zuul:
+  routes:
+    auth:    #认证服务
+      #响应的路径
+      path: /auth/**
+      #敏感头信息
+      sensitiveHeaders:
+      #重定向到的服务（根据服务id名称从注册中心获取服务地址）
+      serviceId:  microservice-auth-server
+    producer: #服务提供者
+      #响应的路径
+      path: /provider/**
+      sensitiveHeaders:
+      #重定向到的服务（根据服务id名称从注册中心获取服务地址）
+      serviceId:  microservice-auth-provider-user
+  #添加代理头
+  add-proxy-headers: true

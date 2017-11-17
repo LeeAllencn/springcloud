@@ -44,8 +44,8 @@
 	<module>microservice-config-server-refresh-cloud-bus</module>
 	<module>microservice-config-server-authenticating</module>
 	<module>microservice-auth-server</module>
-
-
+	<module>microservice-auth-gateway-zuul</module>
+	<module>microservice-auth-provider-user</module>
 
   </modules>
 </project>
