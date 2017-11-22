@@ -4,8 +4,8 @@ spring:
   application:
     name: microservice-hystrix-turbine
   rabbitmq:
-    host: lix3-rabbitmqservice.caas.haihangyun.cn
-    port: 30988
+    host:
+    port:
     username: guest
     password: guest
 eureka:

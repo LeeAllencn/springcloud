@@ -7,8 +7,8 @@ spring:
       profile: dev            # profile对应config server所获取的配置文件中的{profile}
       label: master           # 指定Git仓库的分支，对应config server所获取的配置文件的{label}
   rabbitmq:
-    host: lix3-rabbitmqservice.caas.haihangyun.cn
-    port: 30988
+    host:
+    port:
     username: guest
     password: guest
 
