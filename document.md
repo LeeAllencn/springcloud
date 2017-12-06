@@ -383,7 +383,8 @@ vim Dockerfile
 docker build -t imageName:tag .
 ```
 注:  
--t参数：表示构建的镜像名
+- 参数t：表示构建的镜像名
+- 命令最后的(.)：用于路径参数传递，表示当前路径
 
 ### Docker Compose编配微服务
 使用Compose管理容器
