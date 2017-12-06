@@ -377,6 +377,13 @@ docker r -f $(docker ps -a -q)  # 删除所有容器
 ```
 
 ### Dockerfile构建镜像
+```
+touch Dockerfile
+vim Dockerfile
+docker build -t imageName:tag .
+```
+注:  
+-t参数：表示构建的镜像名
 
 ### Docker Compose编配微服务
 使用Compose管理容器
